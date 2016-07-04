@@ -115,14 +115,10 @@ def main(args):
     if TERM_WIDTH <= INVADER_WIDTH or TERM_HEIGHT <= INVADER_HEIGHT + 2:
         exit('Current terminal too small')
 
-    modes = ['row', 'line', 'all', 'sys']
     num_invaders = TERM_WIDTH // INVADER_WIDTH
     num_rows     = TERM_HEIGHT // (INVADER_HEIGHT + 2)
 
-    if args.c and args.c in modes:
-        print_invaders(num_rows, num_invaders, mode=args.c)
-    else:
-        print_invaders(num_rows, num_invaders, mode='row')
+    print_invaders(num_rows, num_invaders, mode=args.c)
     if args.i:
         input()
 
