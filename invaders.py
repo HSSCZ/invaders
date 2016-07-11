@@ -38,18 +38,19 @@ def print_invaders(num_rows, num_invaders, mode, clear):
     '''
     # leading whitespace for invader strings
     whitespace = (TERM_WIDTH - (INVADER_WIDTH * num_invaders)) // 2
+    # amount of newlines to center invaders vertically
     topspace = (TERM_HEIGHT - ((INVADER_HEIGHT + 2) * num_rows)) // 2 - 1
 
     if clear:
         os.system('clear')
 
-    print('\n' * topspace)
     if mode == 'sys':
         if not clear:
             os.system('clear')
             print('\n' * topspace)
         print(system_colors(whitespace), end='')
     else:
+        print('\n' * topspace)
         for i in range(num_rows):
             print_row(num_invaders, whitespace, mode)
 
@@ -65,7 +66,7 @@ def print_row(num_invaders, whitespace, mode):
         print(random_row(num_invaders, whitespace), end='')
 
 def random_row(num_invaders, whitespace):
-    ''' Prints a row of invaders with the entire row a random color '''
+    ''' Returns a row of invaders with the entire row a random color '''
     color = '\x1b[38;5;%dm' % random.randint(1, 255)
     string = '\n'
     for i in range(INVADER_HEIGHT):
@@ -77,7 +78,7 @@ def random_row(num_invaders, whitespace):
     return string
 
 def random_all(num_invaders, whitespace):
-    ''' Prints a row of invaders with each invader a random color '''
+    ''' Returns a row of invaders with each invader a random color '''
     colors = [random.randint(1, 255) for _ in range(num_invaders)]
     string = '\n'
     for i in range(INVADER_HEIGHT):
@@ -90,7 +91,7 @@ def random_all(num_invaders, whitespace):
     return string
 
 def random_seg(num_invaders, whitespace):
-    ''' Prints a row of invaders with each segment a random color '''
+    ''' Returns a row of invaders with each segment a random color '''
     string = '\n'
     for i in range(INVADER_HEIGHT):
         string += ' '*whitespace
@@ -103,7 +104,7 @@ def random_seg(num_invaders, whitespace):
     return string
 
 def system_colors(whitespace):
-    ''' Prints a system color display of 6, 6, 4 invaders centered on screen '''
+    ''' Returns a system color display of 6, 6, 4 invaders centered on screen '''
     if TERM_WIDTH <= INVADER_WIDTH * 6:
         exit('Current terminal too small: Increase width')
     if TERM_HEIGHT <= (INVADER_HEIGHT * 3) + 6:
