@@ -47,7 +47,7 @@ def print_invaders(num_rows, num_invaders, mode, clear):
     if mode == 'sys':
         if not clear:
             os.system('clear')
-            print('\n' * topspace)
+        print('\n' * topspace)
         print(system_colors(whitespace), end='')
     else:
         print('\n' * topspace)
